@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>url-shortener</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">URL shortener</h1>
+        <form action="/shortUrl" method="post">
+            <input type="text" placeholder="URL" name="fullUrl" class="text-ip" required />
+            <button type="submit" class="btn">short</button>
+            <button class="btn" onclick="redirectToURL('/')">reset</button>
+        </form>
+
+        <% if (shortUrls) { %>
+            <div class="opContainer" id="opContainer">
+                <a href="<%=shortUrls.shortUrl%>">
+                    <%=shortUrls.shortUrl%>
+                </a>
+            </div>
+            <% } %>
+
+    </div>
+
+    <% if(!shortUrls || Object.keys(shortUrls).length === 0) { %>
+        <script> document.getElementById("opContainer").style.display = "none";</script>
+    <% } %>
+    <script>
+        const redirectToURL = (url)=> window.location.href = url;
+    </script>
+
+
+
+</body>
+
+</html>
